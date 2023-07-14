@@ -6,103 +6,29 @@
 	<name>teste-carga</name>
 	<packaging>jar</packaging>
 
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.8</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<properties>
-		<java.version>11</java.version>
-		<jacoco.version>0.8.4</jacoco.version>
-	</properties>
-
 	<dependencies>
-
 		<dependency>
-			<groupId>br.com.claro</groupId>
-			<artifactId>app-connect-persistence</artifactId>
-			<version>1.12.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.jupiter</groupId>
-					<artifactId>junit-jupiter-engine</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-
 	</dependencies>
-
-	<profiles>
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<distributionManagement>
-				<repository>
-					<id>agregadorapps-repo</id>
-					<url>https://nexus.clarobrasil.mobi/repository/agregadorapps-repo/</url>
-				</repository>
-			</distributionManagement>
-			<repositories>
-				<repository>
-					<id>agregadorapps-repo</id>
-					<url>https://nexus.clarobrasil.mobi/repository/agregadorapps-repo/</url>
-				</repository>
-			</repositories>
-		</profile>
-		<profile>
-			<id>isystem</id>
-		</profile>
-		<profile>
-            <id>coverage</id>
-            <build>
-                <plugins>
-                    <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco.version}</version>
-                        <executions>
-                            <execution>
-                                <id>prepare-agent</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                                <configuration>
-                                    <formats>
-                                        <format>XML</format>
-                                    </formats>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-	</profiles>
 
 	<build>
 		<plugins>
